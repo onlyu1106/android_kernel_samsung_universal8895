@@ -158,6 +158,7 @@ extern void disable_priv_cpuidle(void);
 extern void enable_priv_cpuidle(void);
 
 extern struct cpuidle_driver *cpuidle_get_cpu_driver(struct cpuidle_device *dev);
+extern unsigned int cpuidle_get_target_residency(int cpu, int state);
 #else
 static inline void disable_cpuidle(void) { }
 static inline bool cpuidle_not_available(struct cpuidle_driver *drv,
@@ -193,6 +194,7 @@ static inline void cpuidle_disable_device(struct cpuidle_device *dev) { }
 static inline int cpuidle_play_dead(void) {return -ENODEV; }
 static inline struct cpuidle_driver *cpuidle_get_cpu_driver(
 	struct cpuidle_device *dev) {return NULL; }
+static inline unsigned int cpuidle_get_target_residency(int cpu, int state) {return UINT_MAX;}
 #endif
 
 #if defined(CONFIG_CPU_IDLE) && defined(CONFIG_SUSPEND)
