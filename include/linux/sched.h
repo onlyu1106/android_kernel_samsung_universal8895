@@ -1333,10 +1333,6 @@ struct sched_avg {
 	struct util_est			util_est;
 };
 
-#define NOT_ONTIME		1
-#define ONTIME_MIGRATING	2
-#define ONTIME			4
-
 #define ontime_of(p)			(&p->se.ontime)
 
 struct ontime_avg {
@@ -1348,7 +1344,7 @@ struct ontime_avg {
 
 struct ontime_entity {
 	struct ontime_avg avg;
-	int flags;
+	int migrating;
 	int cpu;
 };
 
