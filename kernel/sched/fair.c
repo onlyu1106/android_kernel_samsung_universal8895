@@ -10361,7 +10361,6 @@ static void run_rebalance_domains(struct softirq_action *h)
 #endif
 
 	ontime_migration();
-	schedtune_group_util_update();
 }
 
 /*
