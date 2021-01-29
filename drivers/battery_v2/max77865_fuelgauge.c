@@ -32,6 +32,10 @@ static void max77865_fg_adaptation_wa(struct max77865_fuelgauge_data *fuelgauge)
 	u32 temp;
 	u8 data[2];
 
+#ifdef CONFIG_CAMERA_GREAT
+	return;
+#endif
+
 	/* check RCOMP0 */
 	rcomp0 = max77865_read_word(fuelgauge->i2c, RCOMP_REG);
 	if ((rcomp0 > (fuelgauge->battery_data->rcomp0 * 14 / 10)) || (rcomp0 < (fuelgauge->battery_data->rcomp0 * 7 / 10))) {
