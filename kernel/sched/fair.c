@@ -8375,6 +8375,7 @@ static void update_cpu_capacity(struct sched_domain *sd, int cpu)
 	unsigned long flags;
 
 	cpu_rq(cpu)->cpu_capacity_orig = capacity;
+	update_lbt_overutil(cpu, capacity);
 
 	mcc = &cpu_rq(cpu)->rd->max_cpu_capacity;
 
@@ -8401,8 +8402,6 @@ skip_unlock: __attribute__ ((unused));
 
 	if (!capacity)
 		capacity = 1;
-
-	update_lbt_overutil(cpu, capacity);
 
 	cpu_rq(cpu)->cpu_capacity = capacity;
 	sdg->sgc->capacity = capacity;
